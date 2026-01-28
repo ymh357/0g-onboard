@@ -1,0 +1,64 @@
+[
+  {
+    "chapter": "01-introduction",
+    "title": "第 1 章测验：理解 AI × Crypto 的问题域",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "single",
+        "prompt": "报告中“Crypto”一词的含义更接近哪一种？",
+        "options": [
+          "仅指区块链",
+          "仅指密码学",
+          "同时包含区块链与密码学原语（ZK/FHE/签名等）"
+        ],
+        "answerIndex": 2,
+        "explanation": "报告明确将区块链与密码学原语都纳入“Crypto”的讨论范围。"
+      }
+    ]
+  },
+  {
+    "chapter": "02-core-frameworks",
+    "title": "第 2 章测验：项目判别框架",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "single",
+        "prompt": "下列哪个更符合“AI × Crypto 项目”的判定标准？",
+        "options": [
+          "产品里既有 AI 功能也支持加密货币支付",
+          "AI 与 Crypto 的能力互相咬合，共同产生解决方案",
+          "AI 项目只要把链上数据接进来就算 AI × Crypto"
+        ],
+        "answerIndex": 1,
+        "explanation": "关键是能力耦合（interlock），而不是简单共存。"
+      },
+      {
+        "id": "q2",
+        "type": "single",
+        "prompt": "“内部支持（internal）”更可能带来什么价值？",
+        "options": ["新能力（以前做不到）", "仅更好的支付体验", "仅营销叙事增强"],
+        "answerIndex": 0,
+        "explanation": "内部支持指把一方技术嵌入另一方技术栈内部，从而改变底层机制。"
+      }
+    ]
+  },
+  {
+    "chapter": "03-big-ideas",
+    "title": "第 3 章测验：宏观叙事",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "single",
+        "prompt": "报告为何认为“仅靠深度伪造检测模型”不可靠？",
+        "options": [
+          "因为检测模型无法在链上运行",
+          "因为造假技术迭代更快，检测会输掉军备竞赛",
+          "因为检测模型成本太低没有商业模式"
+        ],
+        "answerIndex": 1,
+        "explanation": "报告指出深度伪造检测方法会迅速过时，军备竞赛中检测落后。"
+      }
+    ]
+  }
+]

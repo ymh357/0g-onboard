@@ -1,0 +1,122 @@
+{
+  "comparison": [
+    {
+      "name": "Ethereum",
+      "type": "Layer 1 Blockchain",
+      "cost": "极高",
+      "costDetail": "$140 per 218KB block",
+      "throughput": "83 KBps",
+      "finality": "12 minutes",
+      "scalability": "不可扩展",
+      "storage": "完整节点存储",
+      "incentive": "N/A",
+      "security": "最高",
+      "advantages": [
+        "安全性最高",
+        "生态最成熟",
+        "去中心化程度高"
+      ],
+      "disadvantages": [
+        "成本极高",
+        "速度极慢",
+        "不可扩展",
+        "不适合大规模数据可用性需求"
+      ]
+    },
+    {
+      "name": "Celestia",
+      "type": "专用数据可用性链",
+      "cost": "中等",
+      "costDetail": "比 Ethereum 便宜，但仍有限",
+      "throughput": "~10 MBps",
+      "finality": ">10 seconds",
+      "scalability": "有限扩展",
+      "storage": "依赖轻客户端采样",
+      "incentive": "N/A",
+      "security": "中等",
+      "advantages": [
+        "比 Ethereum 便宜",
+        "专门的数据可用性链",
+        "分离了数据可用性模块"
+      ],
+      "disadvantages": [
+        "吞吐量瓶颈（~10 MBps）",
+        "缺乏可扩展存储方案",
+        "依赖大量轻客户端采样",
+        "区块时间过长（>10秒）",
+        "每个数据块必须在共识网络广播"
+      ]
+    },
+    {
+      "name": "EigenDA",
+      "type": "基于 EigenLayer 的再质押",
+      "cost": "中等",
+      "costDetail": "基于 EigenLayer",
+      "throughput": "可扩展但有限制",
+      "finality": "可变",
+      "scalability": "水平扩展但有限制",
+      "storage": "节点存储但无索引",
+      "incentive": "惩罚机制（Slashing）",
+      "security": "依赖 EigenLayer",
+      "advantages": [
+        "设计上有水平可扩展性",
+        "基于 EigenLayer 再质押",
+        "可以利用现有 ETH 质押"
+      ],
+      "disadvantages": [
+        "激励机制不足",
+        "惩罚机制风险（难以区分恶意和意外）",
+        "Quorum 构建随意（容易串通）",
+        "缺乏通用存储系统",
+        "Ethereum 验证瓶颈",
+        "降低节点参与意愿"
+      ]
+    },
+    {
+      "name": "0G (ZeroGravity)",
+      "type": "无限可扩展的数据可用性系统",
+      "cost": "低",
+      "costDetail": "基于存储捐赠，一次付费永久存储",
+      "throughput": "无限可扩展",
+      "finality": "快（比 Ethereum 快几个数量级）",
+      "scalability": "无限可扩展",
+      "storage": "通用存储系统（Log + KV + 事务）",
+      "incentive": "奖励机制（PoRA）",
+      "security": "可达到 Ethereum 级别",
+      "advantages": [
+        "无限可扩展（多共识网络）",
+        "通用存储系统",
+        "优化的激励机制（基于奖励）",
+        "VRF 随机构建 Quorum（防止串通）",
+        "分离数据发布和存储",
+        "支持多种数据类型和应用场景",
+        "可以继承 Ethereum/Bitcoin 级别的安全性"
+      ],
+      "disadvantages": [
+        "相对较新，生态还在建设",
+        "需要更多实际应用验证",
+        "多共识网络管理复杂度"
+      ]
+    }
+  ],
+  "keyMetrics": {
+    "cost": {
+      "ethereum": 100,
+      "celestia": 30,
+      "eigenda": 25,
+      "0g": 10
+    },
+    "throughput": {
+      "ethereum": 1,
+      "celestia": 120,
+      "eigenda": 500,
+      "0g": 10000
+    },
+    "scalability": {
+      "ethereum": 1,
+      "celestia": 3,
+      "eigenda": 5,
+      "0g": 10
+    }
+  }
+}

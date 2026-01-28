@@ -1,0 +1,47 @@
+[
+  {
+    "id": "privasea",
+    "name": "Privasea",
+    "category": "CryptoHelpingAI",
+    "support": "Internal",
+    "keywords": ["FHE", "隐私", "加密提示词", "推理/训练"],
+    "summary": "使用全同态加密（FHE）让模型可以在不暴露明文输入的情况下处理加密提示词，并返回加密输出，仅用户可解密。",
+    "why_it_matters": "把密码学原语嵌入 AI 技术栈内部，带来“接受加密提示词”的新能力。"
+  },
+  {
+    "id": "dorsa",
+    "name": "Dorsa",
+    "category": "AIHelpingCrypto",
+    "support": "External",
+    "keywords": ["智能合约", "审计", "安全", "强化学习"],
+    "summary": "用 AI 工具审计与监控智能合约，提升安全性与开发/审计效率。",
+    "why_it_matters": "AI 在链下作为工具提升 crypto 工程效率与安全，但通常不引入“以前做不到”的能力。"
+  },
+  {
+    "id": "mysentient",
+    "name": "MySentient.ai",
+    "category": "NotAIXCrypto",
+    "support": "N/A",
+    "keywords": ["支付", "Web2", "AI 应用"],
+    "summary": "Web2 AI 应用仅将支付方式切换为加密货币，AI 与 Crypto 能力不耦合。",
+    "why_it_matters": "用于说明“共存≠交叉”。"
+  },
+  {
+    "id": "flock",
+    "name": "Flock.io",
+    "category": "CryptoHelpingAI",
+    "support": "Hybrid",
+    "keywords": ["联邦/分布式训练", "隐私", "激励", "惩罚机制"],
+    "summary": "通过分布式训练实现数据隐私，同时用代币激励与链上惩罚机制维持训练参与者诚实。",
+    "why_it_matters": "同时包含内部（训练方式变化）与外部（激励/惩罚）支持，展示“混合象限”的复杂性。"
+  },
+  {
+    "id": "rockefeller",
+    "name": "Rockefeller Bot",
+    "category": "Hybrid",
+    "support": "Internal",
+    "keywords": ["交易机器人", "ZK", "可验证推理", "链上执行"],
+    "summary": "链上交易机器人由链下模型做决策并提交给合约，通过 ZK 证明等方式让合约能验证服务方未撒谎。",
+    "why_it_matters": "展示“把可验证性嵌入 AI 输出”，从而让 AI 能在链上被安全调用。"
+  }
+]

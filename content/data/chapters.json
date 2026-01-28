@@ -1,0 +1,32 @@
+[
+  {
+    "id": "01-introduction",
+    "title": "1. 介绍",
+    "path": "/tutorial/01-introduction",
+    "file": "content/chapters/01-introduction.md"
+  },
+  {
+    "id": "02-core-frameworks",
+    "title": "2. 核心框架",
+    "path": "/tutorial/02-core-frameworks",
+    "file": "content/chapters/02-core-frameworks.md"
+  },
+  {
+    "id": "03-big-ideas",
+    "title": "3. 大想法",
+    "path": "/tutorial/03-big-ideas",
+    "file": "content/chapters/03-big-ideas.md"
+  },
+  {
+    "id": "04-opportunities",
+    "title": "4. 机会",
+    "path": "/tutorial/04-opportunities",
+    "file": "content/chapters/04-opportunities.md"
+  },
+  {
+    "id": "05-appendix",
+    "title": "5. 附录",
+    "path": "/tutorial/05-appendix",
+    "file": "content/chapters/05-appendix.md"
+  }
+]

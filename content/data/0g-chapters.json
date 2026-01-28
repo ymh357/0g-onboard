@@ -1,0 +1,44 @@
+[
+  {
+    "id": "0g-01-introduction",
+    "title": "1. 介绍：为什么需要数据可用性？",
+    "path": "/tutorial/0g/0g-01-introduction",
+    "file": "content/chapters/0g-01-introduction.md"
+  },
+  {
+    "id": "0g-02-core-design",
+    "title": "2. 0G 的核心设计理念",
+    "path": "/tutorial/0g/0g-02-core-design",
+    "file": "content/chapters/0g-02-core-design.md"
+  },
+  {
+    "id": "0g-03-storage-system",
+    "title": "3. 0G 存储系统：分层设计",
+    "path": "/tutorial/0g/0g-03-storage-system",
+    "file": "content/chapters/0g-03-storage-system.md"
+  },
+  {
+    "id": "0g-04-log-protocol",
+    "title": "4. 日志系统协议详解",
+    "path": "/tutorial/0g/0g-04-log-protocol",
+    "file": "content/chapters/0g-04-log-protocol.md"
+  },
+  {
+    "id": "0g-05-incentive-mechanism",
+    "title": "5. 激励机制：PoRA 与挖矿",
+    "path": "/tutorial/0g/0g-05-incentive-mechanism",
+    "file": "content/chapters/0g-05-incentive-mechanism.md"
+  },
+  {
+    "id": "0g-06-advanced-features",
+    "title": "6. 高级功能：Key-Value 与事务处理",
+    "path": "/tutorial/0g/0g-06-advanced-features",
+    "file": "content/chapters/0g-06-advanced-features.md"
+  },
+  {
+    "id": "0g-07-summary",
+    "title": "7. 总结与对比",
+    "path": "/tutorial/0g/0g-07-summary",
+    "file": "content/chapters/0g-07-summary.md"
+  }
+]
