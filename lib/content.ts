@@ -35,17 +35,39 @@ export async function getAll0GChapters(): Promise<Chapter[]> {
   return JSON.parse(fileContents) as Chapter[];
 }
 
-// 加载单个章节内容（支持两种教程）
-export async function getChapterById(id: string, is0G: boolean = false): Promise<ChapterContent | null> {
-  const chapters = is0G ? await getAll0GChapters() : await getAllChapters();
+// 加载 0G 深度解析教程章节
+export async function getAll0GDeepDiveChapters(): Promise<Chapter[]> {
+  const chaptersPath = path.join(contentDirectory, "data", "0g-deep-dive-chapters.json");
+  const fileContents = fs.readFileSync(chaptersPath, "utf8");
+  return JSON.parse(fileContents) as Chapter[];
+}
+
+// 加载单个章节内容（支持三种教程）
+export async function getChapterById(
+  id: string,
+  tutorialType: 'ai-crypto' | '0g' | '0g-deep-dive' = 'ai-crypto'
+): Promise<ChapterContent | null> {
+  let chapters: Chapter[];
+
+  switch (tutorialType) {
+    case '0g-deep-dive':
+      chapters = await getAll0GDeepDiveChapters();
+      break;
+    case '0g':
+      chapters = await getAll0GChapters();
+      break;
+    default:
+      chapters = await getAllChapters();
+  }
+
   const chapter = chapters.find((c) => c.id === id);
-  
+
   if (!chapter) {
     return null;
   }
 
   const fullPath = path.join(process.cwd(), chapter.file);
-  
+
   if (!fs.existsSync(fullPath)) {
     return null;
   }
@@ -72,9 +94,21 @@ export async function getChapterById(id: string, is0G: boolean = false): Promise
 // 获取章节导航（上一章/下一章）
 export async function getChapterNavigation(
   currentId: string,
-  is0G: boolean = false
+  tutorialType: 'ai-crypto' | '0g' | '0g-deep-dive' = 'ai-crypto'
 ): Promise<{ prev: Chapter | null; next: Chapter | null }> {
-  const chapters = is0G ? await getAll0GChapters() : await getAllChapters();
+  let chapters: Chapter[];
+
+  switch (tutorialType) {
+    case '0g-deep-dive':
+      chapters = await getAll0GDeepDiveChapters();
+      break;
+    case '0g':
+      chapters = await getAll0GChapters();
+      break;
+    default:
+      chapters = await getAllChapters();
+  }
+
   const currentIndex = chapters.findIndex((c) => c.id === currentId);
 
   return {

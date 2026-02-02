@@ -39,18 +39,16 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
 
   return (
     <>
-      {/* 移动端菜单按钮 */}
-      <div className="lg:hidden fixed top-14 left-0 right-0 z-40 border-b bg-background px-4 py-2">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className="gap-2"
-        >
-          <Menu className="h-4 w-4" />
-          <span>{is0G ? "0G 教程目录" : "教程目录"}</span>
-        </Button>
-      </div>
+      {/* 移动端浮动按钮 */}
+      <Button
+        variant="default"
+        size="icon"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        className="lg:hidden fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full shadow-lg"
+        aria-label="打开章节目录"
+      >
+        <Menu className="h-6 w-6" />
+      </Button>
 
       {/* 移动端侧边栏覆盖层 */}
       <AnimatePresence>
@@ -60,31 +58,33 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/50 lg:hidden"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
               onClick={() => setIsMobileOpen(false)}
             />
             <motion.aside
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed left-0 top-14 z-50 h-[calc(100vh-3.5rem)] w-64 border-r bg-background lg:hidden"
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed left-0 top-0 z-50 h-screen w-72 border-r bg-background shadow-2xl lg:hidden"
             >
-              <div className="h-full overflow-y-auto p-4">
-                <nav className="space-y-1">
-                  <div className="mb-4 flex items-center justify-between">
-                    <div className="px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {is0G ? "0G 教程章节" : "章节导航"}
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setIsMobileOpen(false)}
-                      className="h-6 w-6 p-0"
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </Button>
+              <div className="h-full overflow-y-auto p-6">
+                <div className="mb-6 flex items-center justify-between">
+                  <div className="text-sm font-bold">
+                    {is0G ? "0G 教程章节" : "章节导航"}
                   </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsMobileOpen(false)}
+                    className="h-8 w-8 p-0"
+                    aria-label="关闭菜单"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                </div>
+                <nav className="space-y-2">
                   {chapters.map((chapter) => {
                     const isActive = pathname === chapter.path || chapter.id === currentChapterId;
                     return (
@@ -93,20 +93,20 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
                         href={chapter.path}
                         onClick={() => setIsMobileOpen(false)}
                         className={cn(
-                          "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
+                          "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all",
                           isActive
-                            ? "bg-primary text-primary-foreground font-medium"
-                            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                            ? "bg-primary text-primary-foreground font-medium shadow-sm"
+                            : "text-foreground/70 hover:bg-accent hover:text-accent-foreground"
                         )}
                       >
                         <span className="flex-shrink-0">
                           {isActive ? (
                             <CheckCircle2 className="h-4 w-4" />
                           ) : (
-                            <Circle className="h-4 w-4" />
+                            <Circle className="h-4 w-4 opacity-50" />
                           )}
                         </span>
-                        <span>{chapter.title}</span>
+                        <span className="leading-snug">{chapter.title}</span>
                       </Link>
                     );
                   })}
@@ -123,18 +123,23 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
         animate={{
           width: isCollapsed ? "4rem" : "16rem",
         }}
-        className="hidden border-r bg-muted/40 lg:block"
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="hidden border-r bg-muted/30 lg:block"
       >
         <div className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto">
           {/* 收起/展开按钮 */}
-          <div className="flex items-center justify-between border-b p-2">
+          <div className={cn(
+            "flex items-center border-b p-3",
+            isCollapsed ? "justify-center" : "justify-between"
+          )}>
             <AnimatePresence mode="wait">
               {!isCollapsed && (
                 <motion.div
-                  initial={{ opacity: 0, width: 0 }}
-                  animate={{ opacity: 1, width: "auto" }}
-                  exit={{ opacity: 0, width: 0 }}
-                  className="px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="px-2 text-xs font-bold uppercase tracking-wider text-muted-foreground"
                 >
                   {is0G ? "0G 教程章节" : "章节导航"}
                 </motion.div>
@@ -144,8 +149,9 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
               variant="ghost"
               size="sm"
               onClick={toggleCollapse}
-              className="h-8 w-8 p-0"
+              className="h-8 w-8 p-0 hover:bg-accent"
               title={isCollapsed ? "展开侧边栏" : "收起侧边栏"}
+              aria-label={isCollapsed ? "展开侧边栏" : "收起侧边栏"}
             >
               {isCollapsed ? (
                 <ChevronRight className="h-4 w-4" />
@@ -156,7 +162,10 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
           </div>
 
           {/* 章节列表 */}
-          <nav className="p-4 space-y-1">
+          <nav className={cn(
+            "p-3 space-y-1.5",
+            isCollapsed && "flex flex-col items-center"
+          )}>
             {chapters.map((chapter) => {
               const isActive = pathname === chapter.path || chapter.id === currentChapterId;
               return (
@@ -164,10 +173,11 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
                   key={chapter.id}
                   href={chapter.path}
                   className={cn(
-                    "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
+                    "flex items-center rounded-lg px-3 py-2.5 text-sm transition-all",
+                    isCollapsed ? "justify-center w-10 h-10" : "gap-3",
                     isActive
-                      ? "bg-primary text-primary-foreground font-medium"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                      ? "bg-primary text-primary-foreground font-medium shadow-sm"
+                      : "text-foreground/70 hover:bg-accent hover:text-accent-foreground"
                   )}
                   title={isCollapsed ? chapter.title : undefined}
                 >
@@ -175,7 +185,7 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
                     {isActive ? (
                       <CheckCircle2 className="h-4 w-4" />
                     ) : (
-                      <Circle className="h-4 w-4" />
+                      <Circle className="h-4 w-4 opacity-50" />
                     )}
                   </span>
                   <AnimatePresence mode="wait">
@@ -184,7 +194,8 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
                         initial={{ opacity: 0, width: 0 }}
                         animate={{ opacity: 1, width: "auto" }}
                         exit={{ opacity: 0, width: 0 }}
-                        className="truncate"
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden leading-snug"
                       >
                         {chapter.title}
                       </motion.span>

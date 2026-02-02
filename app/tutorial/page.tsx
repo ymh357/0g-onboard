@@ -46,37 +46,88 @@ export default async function TutorialIndexPage() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-lg border bg-muted/50 p-6">
-        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold">
-          <BookOpen className="h-5 w-5" />
-          学习建议
-        </h2>
-        <ul className="space-y-2 text-sm text-muted-foreground">
-          <li className="flex items-start gap-2">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
-            <span>
-              <strong>第 1 章</strong>：了解教程目标和学习路线
-            </span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
-            <span>
-              <strong>第 2 章</strong>：重点学习核心框架，这是判断项目价值的关键工具
-            </span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
-            <span>
-              <strong>第 3 章</strong>：理解宏观叙事和趋势驱动力
-            </span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
-            <span>
-              <strong>第 4-5 章</strong>：探索具体机会和补充基础知识
-            </span>
-          </li>
-        </ul>
+      <div className="mt-12 space-y-6">
+        <Card className="border-2 border-primary/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-primary" />
+              0G 专题教程
+            </CardTitle>
+            <CardDescription>
+              深入学习 0G 项目的核心技术和架构设计
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Link href="/tutorial/0g">
+                <Card className="h-full transition-shadow hover:shadow-md">
+                  <CardHeader>
+                    <CardTitle className="text-lg">0G 基础教程</CardTitle>
+                    <CardDescription>
+                      了解 0G 的核心概念和基本架构
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button variant="outline" className="w-full">
+                      开始学习
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/tutorial/0g-deep-dive">
+                <Card className="h-full transition-shadow hover:shadow-md">
+                  <CardHeader>
+                    <CardTitle className="text-lg">0G 深度解析</CardTitle>
+                    <CardDescription>
+                      深入探索技术原理和架构设计
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button variant="outline" className="w-full">
+                      开始学习
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="rounded-lg border bg-muted/50 p-6">
+          <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold">
+            <BookOpen className="h-5 w-5" />
+            学习建议
+          </h2>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
+              <span>
+                <strong>第 1 章</strong>：了解教程目标和学习路线
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
+              <span>
+                <strong>第 2 章</strong>：重点学习核心框架，这是判断项目价值的关键工具
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
+              <span>
+                <strong>第 3 章</strong>：理解宏观叙事和趋势驱动力
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
+              <span>
+                <strong>第 4-5 章</strong>：探索具体机会和补充基础知识
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

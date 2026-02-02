@@ -24,8 +24,8 @@ export async function generateStaticParams() {
 
 export default async function ZeroGChapterPage({ params }: ChapterPageProps) {
   const { chapter: chapterId } = await params;
-  const chapter = await getChapterById(chapterId, true);
-  const navigation = await getChapterNavigation(chapterId, true);
+  const chapter = await getChapterById(chapterId, '0g');
+  const navigation = await getChapterNavigation(chapterId, '0g');
   const allChapters = await getAll0GChapters();
   const currentIndex = allChapters.findIndex((c) => c.id === chapterId);
 

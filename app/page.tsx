@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Database } from "lucide-react";
+import { BookOpen, Database, Microscope } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -17,7 +17,7 @@ export default function HomePage() {
         </div>
 
         {/* 教程选择 */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* AI x Crypto 教程 */}
           <Card className="transition-shadow hover:shadow-lg">
             <CardHeader>
@@ -46,7 +46,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          {/* 0G 教程 */}
+          {/* 0G 基础教程 */}
           <Card className="transition-shadow hover:shadow-lg">
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -54,14 +54,14 @@ export default function HomePage() {
                   <Database className="h-6 w-6" />
                 </div>
                 <div>
-                  <CardTitle>0G 数据可用性教程</CardTitle>
-                  <CardDescription>基于《ZeroGravity 白皮书》</CardDescription>
+                  <CardTitle>0G 基础教程</CardTitle>
+                  <CardDescription>入门 0G 生态系统</CardDescription>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                深入理解 0G 如何实现无限可扩展的数据可用性系统，学习 PoRA 机制和分层存储设计。
+                快速了解 0G 的核心概念和基本架构，学习 PoRA 机制和分层存储设计。
               </p>
               <div className="flex flex-wrap gap-2">
                 <Link href="/tutorial/0g">
@@ -73,12 +73,40 @@ export default function HomePage() {
               </div>
             </CardContent>
           </Card>
+
+          {/* 0G 深度解析教程 */}
+          <Card className="transition-shadow hover:shadow-lg">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-purple-500 text-white">
+                  <Microscope className="h-6 w-6" />
+                </div>
+                <div>
+                  <CardTitle>0G 深度解析</CardTitle>
+                  <CardDescription>架构设计与技术原理</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                深入探索 0G 的技术原理和架构设计，从底层机制到实践应用的完整解析。
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <Link href="/tutorial/0g-deep-dive">
+                  <Button>开始学习</Button>
+                </Link>
+              </div>
+              <div className="text-xs text-muted-foreground">
+                <strong>包含：</strong>共识流程、Quorum 可视化、INFT 交互、对比分析、实战代码
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* 快速导航 */}
         <div className="rounded-lg border bg-muted/50 p-6">
           <h2 className="mb-4 text-lg font-semibold">快速导航</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <div className="text-sm font-medium mb-2">AI × Crypto 教程</div>
               <ul className="text-sm text-muted-foreground space-y-1">
@@ -88,11 +116,19 @@ export default function HomePage() {
               </ul>
             </div>
             <div>
-              <div className="text-sm font-medium mb-2">0G 数据可用性教程</div>
+              <div className="text-sm font-medium mb-2">0G 基础教程</div>
               <ul className="text-sm text-muted-foreground space-y-1">
                 <li>• 核心设计：无限可扩展架构</li>
                 <li>• 存储系统：分层设计</li>
                 <li>• 激励机制：PoRA 与挖矿</li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-sm font-medium mb-2">0G 深度解析</div>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>• Chain/Storage/DA/Compute/INFT</li>
+                <li>• 技术原理：共识、数据流</li>
+                <li>• 实战：代码示例与节点部署</li>
               </ul>
             </div>
           </div>

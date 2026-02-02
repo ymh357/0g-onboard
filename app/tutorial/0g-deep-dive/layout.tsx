@@ -1,4 +1,4 @@
-export default function ZeroGTutorialLayout({
+export default function ZeroGDeepDiveLayout({
   children,
 }: {
   children: React.ReactNode;

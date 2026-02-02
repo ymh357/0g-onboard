@@ -1,0 +1,62 @@
+[
+  {
+    "id": "0g-deep-01-chain",
+    "title": "1. 0G Chain 深度解析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-01-chain",
+    "file": "content/chapters/0g-deep-01-chain.md"
+  },
+  {
+    "id": "0g-deep-02-storage",
+    "title": "2. 0G Storage 系统架构深度解析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-02-storage",
+    "file": "content/chapters/0g-deep-02-storage.md"
+  },
+  {
+    "id": "0g-deep-03-pora",
+    "title": "3. PoRA 激励机制深度解析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-03-pora",
+    "file": "content/chapters/0g-deep-03-pora.md"
+  },
+  {
+    "id": "0g-deep-04-da",
+    "title": "4. 0G DA 深度解析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-04-da",
+    "file": "content/chapters/0g-deep-04-da.md"
+  },
+  {
+    "id": "0g-deep-05-compute",
+    "title": "5. 0G Compute Network 深度解析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-05-compute",
+    "file": "content/chapters/0g-deep-05-compute.md"
+  },
+  {
+    "id": "0g-deep-06-inft",
+    "title": "6. INFT（智能NFT）深度解析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-06-inft",
+    "file": "content/chapters/0g-deep-06-inft.md"
+  },
+  {
+    "id": "0g-deep-07-consensus",
+    "title": "7. 多网络共识与 Shared Staking",
+    "path": "/tutorial/0g-deep-dive/0g-deep-07-consensus",
+    "file": "content/chapters/0g-deep-07-consensus.md"
+  },
+  {
+    "id": "0g-deep-08-dataflow",
+    "title": "8. 完整数据流分析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-08-dataflow",
+    "file": "content/chapters/0g-deep-08-dataflow.md"
+  },
+  {
+    "id": "0g-deep-09-comparison",
+    "title": "9. 对比分析",
+    "path": "/tutorial/0g-deep-dive/0g-deep-09-comparison",
+    "file": "content/chapters/0g-deep-09-comparison.md"
+  },
+  {
+    "id": "0g-deep-10-practice",
+    "title": "10. 实战入门",
+    "path": "/tutorial/0g-deep-dive/0g-deep-10-practice",
+    "file": "content/chapters/0g-deep-10-practice.md"
+  }
+]
