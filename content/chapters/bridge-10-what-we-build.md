@@ -8,8 +8,8 @@ title: "终章——构建 0G Bridge MVP 蓝图"
 
 读完本章，你将能够：
 - **核心：定义 0G Bridge MVP（最小可行性产品）的核心功能范围。**
-- **核心：描述基于双协议（CCIP + Wormhole）的 0G 跨链技术选型。**
-- 理解开发里程碑及长期扩展方向（Mayan 拍卖集成）。
+- **核心：描述基于三协议（CCIP + Wormhole + LayerZero）的 0G 跨链技术选型。**
+- 理解开发里程碑及长期扩展方向（iNFT 跨链、Mayan 拍卖集成）。
 
 ---
 
@@ -19,9 +19,11 @@ title: "终章——构建 0G Bridge MVP 蓝图"
 
 ### 核心功能规格
 1.  **一键到账体验**：集成类似 Axelar 的 Gas Service，解决“Gas 费兑换陷阱”。
-2.  **资产全覆盖**：
-    *   **A0GI**：走 CCIP CCT 原生路径。
-    *   **WETH/USDC**：走 Wormhole NTT 规范映射路径。
+2.  **资产全覆盖（基于规范映射）**：
+    *   **A0GI**：走 CCIP CCT Burn-and-Mint 路径（第 4 章）。
+    *   **WETH/USDC 等外部资产**：从 CCIP Lock & Mint（第 4 章）、Wormhole NTT Hub-and-Spoke（第 6 章）、LayerZero OFT（第 10 章）中按场景选型。
+    *   **iNFT**：短期用 LayerZero ONFT 实现所有权跨链；长期自研 ERC-7857 适配层（第 10 章）。
+    *   **核心原则**：无论走哪个协议，确保每个资产在 0G 链上只有一个官方合约地址。
 3.  **电竞感 UI**：摆脱通用组件，使用 Next.js + Tailwind 构建 0G AI 风格的界面。
 4.  **原子级状态监控**：实时展示验证进度，包含直达各链浏览器的链接。
 
@@ -32,7 +34,8 @@ title: "终章——构建 0G Bridge MVP 蓝图"
 | 模块 | 推荐方案 | 理由 |
 | :--- | :--- | :--- |
 | **前端框架** | Next.js (App Router) | 极致的性能与路由体验。 |
-| **资产结算** | **CCIP** (A0GI) + **NTT** (WETH) | 正统性与广度的完美结合。 |
+| **代币结算** | **CCIP** (A0GI) + **NTT** 或 **OFT** (外部资产) | CCIP 保障 A0GI 的最高安全；NTT 无协议费；OFT 链覆盖最广且已部署 0G 主网。 |
+| **iNFT 跨链** | **LayerZero ONFT**（短期） → **ERC-7857 适配层**（长期） | ONFT 是最成熟的 NFT 跨链标准；ERC-7857 的加密元数据需自研适配。 |
 | **Gas 代付** | **Axelar Gas Service** 或自研 Solver | 必须解决“无 Gas 费领钱”的痛点。 |
 | **状态轮询** | Wormhole/Chainlink SDK | 确保用户始终掌握交易进度。 |
 
@@ -43,14 +46,15 @@ title: "终章——构建 0G Bridge MVP 蓝图"
 *   **第一阶段 (UI/UX)**：完成 0G 风格的前端搭建，集成钱包连接（wagmi v2）。
 *   **第二阶段 (核心逻辑)**：接入 SDK，实现代币余额查询与路由报价。
 *   **第三阶段 (体验补齐)**：上线 Gas 代付功能，实现“一键到账”。
-*   **第四阶段 (进阶结算)**：集成 Mayan Finance，支持意图驱动的大额拍卖交易。
+*   **第四阶段 (iNFT 跨链)**：用 LayerZero ONFT 实现 iNFT 所有权跨链；启动 ERC-7857 适配层研发。
+*   **第五阶段 (进阶结算)**：集成 Mayan Finance，支持意图驱动的大额拍卖交易。
 
 ---
 
 ## 本章小结
 
 - 0G Bridge 的成功不在于复杂，而在于**“资产原生化”**和**“零摩擦交互”**。
-- **CCIP 是清算根基**，**Wormhole 是连接纽带**，**SDK 是呈现舞台**。
+- **CCIP 是清算根基**，**Wormhole 是连接纽带**，**LayerZero 是 iNFT 跨链的桥头堡**，**SDK 是呈现舞台**。
 - 作为构建者，你的使命是利用现有的顶级基础设施，为 0G 用户铺设一条通往 AI 世界的坦途。
 
 **恭喜你！你已经完成了《0G 跨链技术专题》的全部学习。现在，是时候去代码中实现这一切了。**

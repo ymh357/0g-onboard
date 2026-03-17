@@ -48,35 +48,43 @@
     "order": 6
   },
   {
-    "id": "bridge-07-monad-bridge-case-study",
-    "title": "7. 案例拆解——Monad Bridge 的极致体验",
-    "path": "/tutorial/bridge/bridge-07-monad-bridge-case-study",
-    "file": "content/chapters/bridge-07-monad-bridge-case-study.md",
+    "id": "bridge-07-layerzero",
+    "title": "7. 第三条路——LayerZero 与模块化安全",
+    "path": "/tutorial/bridge/bridge-07-layerzero",
+    "file": "content/chapters/bridge-07-layerzero.md",
     "track": "bridge",
     "order": 7
   },
   {
-    "id": "bridge-08-mayan-finance",
-    "title": "8. 拍卖式结算层——Mayan Finance 详解",
-    "path": "/tutorial/bridge/bridge-08-mayan-finance",
-    "file": "content/chapters/bridge-08-mayan-finance.md",
+    "id": "bridge-08-monad-bridge-case-study",
+    "title": "8. 案例拆解——Monad Bridge 的极致体验",
+    "path": "/tutorial/bridge/bridge-08-monad-bridge-case-study",
+    "file": "content/chapters/bridge-07-monad-bridge-case-study.md",
     "track": "bridge",
     "order": 8
   },
   {
-    "id": "bridge-09-0g-bridge-analysis",
-    "title": "9. 0G Bridge 现状——哪些已有，哪些缺失？",
-    "path": "/tutorial/bridge/bridge-09-0g-bridge-analysis",
-    "file": "content/chapters/bridge-09-0g-bridge-analysis.md",
+    "id": "bridge-09-mayan-finance",
+    "title": "9. 拍卖式结算层——Mayan Finance 详解",
+    "path": "/tutorial/bridge/bridge-09-mayan-finance",
+    "file": "content/chapters/bridge-08-mayan-finance.md",
     "track": "bridge",
     "order": 9
   },
   {
-    "id": "bridge-10-what-we-build",
-    "title": "10. 终章——构建 0G Bridge MVP 蓝图",
-    "path": "/tutorial/bridge/bridge-10-what-we-build",
-    "file": "content/chapters/bridge-10-what-we-build.md",
+    "id": "bridge-10-0g-bridge-analysis",
+    "title": "10. 0G Bridge 现状——哪些已有，哪些缺失？",
+    "path": "/tutorial/bridge/bridge-10-0g-bridge-analysis",
+    "file": "content/chapters/bridge-09-0g-bridge-analysis.md",
     "track": "bridge",
     "order": 10
+  },
+  {
+    "id": "bridge-11-what-we-build",
+    "title": "11. 终章——构建 0G Bridge MVP 蓝图",
+    "path": "/tutorial/bridge/bridge-11-what-we-build",
+    "file": "content/chapters/bridge-10-what-we-build.md",
+    "track": "bridge",
+    "order": 11
   }
 ]

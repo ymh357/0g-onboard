@@ -59,4 +59,4 @@ Mayan 并不是 Wormhole 的竞争对手，它是 Wormhole 的顶级“房客”
 - **意图驱动**：用户只提要求，Solver 竞价完成任务，体验更上一层楼。
 - **协同效应**：它完美结合了 Wormhole 的安全性和 Solver 的高效流动性。
 
-在下一章，我们将综合所有这些顶级协议（CCIP, Wormhole, Axelar, Mayan），为 0G Bridge 描绘最终的构建蓝图。
+在下一章，我们将立足 0G 生态，综合所有协议（CCIP、Wormhole、LayerZero、Axelar、Mayan），分析 0G Bridge 的现状与缺口。
