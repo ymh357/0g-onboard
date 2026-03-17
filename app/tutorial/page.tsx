@@ -54,11 +54,11 @@ export default async function TutorialIndexPage() {
               0G 专题教程
             </CardTitle>
             <CardDescription>
-              深入学习 0G 项目的核心技术和架构设计
+              深入学习 0G 项目的核心技术和架构设计，以及相关的跨链桥技术
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Link href="/tutorial/0g">
                 <Card className="h-full transition-shadow hover:shadow-md">
                   <CardHeader>
@@ -86,6 +86,23 @@ export default async function TutorialIndexPage() {
                   </CardHeader>
                   <CardContent>
                     <Button variant="outline" className="w-full">
+                      开始学习
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
+
+              <Link href="/tutorial/bridge">
+                <Card className="h-full transition-shadow hover:shadow-md border-primary/40 bg-primary/5">
+                  <CardHeader>
+                    <CardTitle className="text-lg">跨链桥专题</CardTitle>
+                    <CardDescription>
+                      从 0 到 1 理解跨链桥设计与 Wormhole
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button variant="default" className="w-full">
                       开始学习
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>

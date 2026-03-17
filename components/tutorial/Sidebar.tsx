@@ -13,14 +13,17 @@ interface SidebarProps {
   chapters: Chapter[];
   currentChapterId?: string;
   is0G?: boolean;
+  isBridge?: boolean;
 }
 
 const SIDEBAR_STORAGE_KEY = "sidebar-collapsed";
 
-export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarProps) {
+export function Sidebar({ chapters, currentChapterId, is0G = false, isBridge = false }: SidebarProps) {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  const sidebarTitle = is0G ? "0G 教程章节" : isBridge ? "跨链桥专题章节" : "章节导航";
 
   // 从 localStorage 读取用户偏好
   useEffect(() => {
@@ -72,7 +75,7 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
               <div className="h-full overflow-y-auto p-6">
                 <div className="mb-6 flex items-center justify-between">
                   <div className="text-sm font-bold">
-                    {is0G ? "0G 教程章节" : "章节导航"}
+                    {sidebarTitle}
                   </div>
                   <Button
                     variant="ghost"
@@ -141,7 +144,7 @@ export function Sidebar({ chapters, currentChapterId, is0G = false }: SidebarPro
                   transition={{ duration: 0.2 }}
                   className="px-2 text-xs font-bold uppercase tracking-wider text-muted-foreground"
                 >
-                  {is0G ? "0G 教程章节" : "章节导航"}
+                  {sidebarTitle}
                 </motion.div>
               )}
             </AnimatePresence>

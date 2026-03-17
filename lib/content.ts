@@ -42,10 +42,17 @@ export async function getAll0GDeepDiveChapters(): Promise<Chapter[]> {
   return JSON.parse(fileContents) as Chapter[];
 }
 
-// 加载单个章节内容（支持三种教程）
+// 加载 Bridge 跨链桥教程章节
+export async function getAllBridgeChapters(): Promise<Chapter[]> {
+  const chaptersPath = path.join(contentDirectory, "data", "bridge-chapters.json");
+  const fileContents = fs.readFileSync(chaptersPath, "utf8");
+  return JSON.parse(fileContents) as Chapter[];
+}
+
+// 加载单个章节内容（支持四种教程）
 export async function getChapterById(
   id: string,
-  tutorialType: 'ai-crypto' | '0g' | '0g-deep-dive' = 'ai-crypto'
+  tutorialType: 'ai-crypto' | '0g' | '0g-deep-dive' | 'bridge' = 'ai-crypto'
 ): Promise<ChapterContent | null> {
   let chapters: Chapter[];
 
@@ -55,6 +62,9 @@ export async function getChapterById(
       break;
     case '0g':
       chapters = await getAll0GChapters();
+      break;
+    case 'bridge':
+      chapters = await getAllBridgeChapters();
       break;
     default:
       chapters = await getAllChapters();
@@ -94,7 +104,7 @@ export async function getChapterById(
 // 获取章节导航（上一章/下一章）
 export async function getChapterNavigation(
   currentId: string,
-  tutorialType: 'ai-crypto' | '0g' | '0g-deep-dive' = 'ai-crypto'
+  tutorialType: 'ai-crypto' | '0g' | '0g-deep-dive' | 'bridge' = 'ai-crypto'
 ): Promise<{ prev: Chapter | null; next: Chapter | null }> {
   let chapters: Chapter[];
 
@@ -104,6 +114,9 @@ export async function getChapterNavigation(
       break;
     case '0g':
       chapters = await getAll0GChapters();
+      break;
+    case 'bridge':
+      chapters = await getAllBridgeChapters();
       break;
     default:
       chapters = await getAllChapters();

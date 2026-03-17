@@ -8,6 +8,7 @@ export function Header() {
     { href: "/tutorial", label: "AI × Crypto" },
     { href: "/tutorial/0g", label: "0G 基础" },
     { href: "/tutorial/0g-deep-dive", label: "0G 深度解析" },
+    { href: "/tutorial/bridge", label: "跨链桥" },
   ];
 
   return (
