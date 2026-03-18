@@ -20,11 +20,11 @@ title: "正统跨链标准——Chainlink CCIP 深度解析"
 
 ---
 
-## 1. 0G 的选择：为什么是 CCIP？
+## 1. CCIP 在 0G 生态中的角色
 
-在 0G 的官方技术架构中，**Chainlink CCIP** 不仅仅是一个合作伙伴，它是 0G 代币 **A0GI** 流转的官方标准。
+> **重要澄清**：经链上验证，0G 原生代币（主网符号 "0G"）的跨链采用的是 **LayerZero OFT** 标准（合约名 `ZeroGravityOFT`，详见第 7 章）。CCIP 并非 0G 代币的跨链标准，但它仍然是 0G 生态中重要的跨链基础设施之一——hub.0g.ai 的前端代码中包含完整的 CCIP 集成（Router ABI、transferTokens 等），可能用于特定资产通道或消息传递场景。
 
-0G 基金会选择 CCIP 的核心逻辑在于其**极高的安全等级**。对于一个支撑大规模 AI 数据的 L1 来说，任何一次跨链事故都是毁灭性的。CCIP 通过其独特的"风险管理网络"提供了目前行业内最接近传统金融安全级的保障。
+**本章的价值**：无论 0G 自身选择了什么协议，CCIP 作为跨链行业的标杆方案，其架构设计（三网验证、Token Pool、可编程转账）值得深入理解。这些设计思想对评估任何跨链方案都有参考价值。
 
 ### CCIP 的费用与 LINK 代币
 
@@ -163,7 +163,7 @@ Token Pool 是 CCIP 中实际执行代币锁定、销毁、铸造、解锁的智
 | 模式 | 源链操作 | 目标链操作 | 适用场景 |
 | :--- | :--- | :--- | :--- |
 | **Lock & Mint** | 锁定代币到 Pool | 铸造等量代币 | 代币不支持 burn（如已部署的老 ERC-20） |
-| **Burn & Mint** | 销毁代币 | 铸造等量代币 | 代币设计为多链原生（如 A0GI） |
+| **Burn & Mint** | 销毁代币 | 铸造等量代币 | 代币设计为多链原生（项目方拥有 burn/mint 权限） |
 | **Burn & Unlock** | 销毁代币 | 从 Pool 解锁代币 | Lock & Mint 的逆向操作（返回原生链） |
 | **Lock & Unlock** | 锁定代币到 Pool | 从 Pool 解锁代币 | 两端都有流动性储备 |
 
@@ -182,7 +182,7 @@ releaseOrMint(ReleaseOrMintInV1) → ReleaseOrMintOutV1  // OffRamp calls this o
 
 **BurnMintTokenPool**——适用于"自家代币"：
 - **要求**：代币合约必须实现 `burn()` 和 `mint()` 接口，且项目方能将 Burn/Mint 权限授予 Token Pool
-- **典型场景**：0G 的 A0GI——0G 官方拥有合约控制权，可以自由授权
+- **典型场景**：项目方自己发行的代币，合约中实现了 burn/mint 接口且项目方拥有控制权
 - **优势**：无需锁定资金，资本效率高
 
 **LockReleaseTokenPool**——适用于"别人家的代币"：
@@ -209,16 +209,13 @@ releaseOrMint(ReleaseOrMintInV1) → ReleaseOrMintOutV1  // OffRamp calls this o
 | **流动性要求** | 无需预注资（直接铸造） | 需预注资 + Rebalancer 管理 |
 | **适用于第三方代币** | 否 | **是** |
 
-**这意味着**：CCIP 不仅能处理项目方自己的代币（如 A0GI），也完全可以处理第三方外部资产（如 WETH、WBTC）。关键区别仅在于使用哪种 Token Pool。
+**这意味着**：CCIP 不仅能处理项目方自己的代币，也完全可以处理第三方外部资产（如 WETH、WBTC）。关键区别仅在于使用哪种 Token Pool。
 
-### D. 0G 的 Token Pool 配置示例
+### D. Token Pool 配置示例
 
-**A0GI（自有代币，Burn & Mint）**：
-- **以太坊端**：部署 **BurnMintTokenPool**。当 A0GI 从以太坊跨到 0G 时，以太坊端的 Pool 执行 `burn`
-- **0G Chain 端**：A0GI 是原生 Gas 代币，底层系统直接增加用户余额（等效于 `mint`）
-- **结果**：全网 A0GI 总量始终守恒。不存在"金库被黑"的风险，因为没有金库
+> **注意**：0G 原生代币实际采用 LayerZero OFT 标准（第 7 章），不走 CCIP。以下示例展示的是 CCIP Token Pool 的通用工作方式，适用于任何想通过 CCIP 桥接资产的项目。
 
-**WETH（第三方代币，Lock & Mint）**——如果 0G 选择用 CCIP 桥接：
+**WETH（第三方代币，Lock & Mint）**——如果选择用 CCIP 桥接：
 - **以太坊端**：部署 **LockReleaseTokenPool**。用户的 WETH 被锁入 Pool（0G 无法也不需要修改 WETH 合约）
 - **0G Chain 端**：部署 0G 官方的 WETH 代币合约 + **BurnMintTokenPool**。收到消息后铸造规范版 WETH
 - **注册**：需要与 Chainlink 协调，由 TokenAdminRegistry 的 owner 将 WETH 注册到 0G 的跨链路径中（因为 0G 不是 WETH 的发行方，无法自助注册）
@@ -260,7 +257,7 @@ CCIP 通过 **TokenAdminRegistry** 合约管理代币与 Token Pool 的映射关
 3. OnRamp 和 OffRamp 在处理代币转移时，会**查询 TokenAdminRegistry** 来找到正确的 Token Pool
 4. 每个代币在每条链上只能注册**一个** Token Pool——这保证了"规范性"
 
-**类比**：TokenAdminRegistry 就像一本官方电话簿——"如果你要跨链转移 A0GI，请拨打这个 Token Pool 的号码"。任何人都不能冒充另一个 Token Pool 来处理 A0GI 的跨链。
+**类比**：TokenAdminRegistry 就像一本官方电话簿——"如果你要跨链转移某个代币，请拨打这个 Token Pool 的号码"。任何人都不能冒充另一个 Token Pool 来处理该代币的跨链。
 
 ### C. 自服务部署
 
@@ -294,4 +291,6 @@ CCT 标准允许项目方自主管理：
 - **CCT 标准** 保证了零滑点、无包装代币的跨链体验
 - **可编程转账**实现了"钱到事成"的原子化闭环
 
-在下一章，我们将看 Wormhole 如何作为 0G 的战略补充，为其提供非 EVM 链（如 Solana）的广度连接。
+> **与 0G 的关系**：0G 原生代币采用的是 LayerZero OFT（第 7 章），不是 CCIP。但 CCIP 的架构设计（三网验证、Token Pool、可编程转账、RMN）是理解跨链安全的重要参考。hub.0g.ai 的前端代码中也包含 CCIP 集成，可能用于特定资产通道。
+
+在下一章，我们将看 Wormhole 的守护者网络和 VAA 机制。

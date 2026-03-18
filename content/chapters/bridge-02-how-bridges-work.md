@@ -65,14 +65,17 @@ title: "三种桥接方案——锁、烧、换"
 
 ---
 
-## 4. Burn-and-Mint：0G A0GI 的正统选择
+## 4. Burn-and-Mint：0G 代币的实际选择
 
-0G 官方代币 **A0GI** 采用的是 **Burn-and-Mint** 模式（基于 Chainlink CCIP）。
+0G 官方代币（主网符号 **0G**，测试网曾用 A0GI）采用的是 **Burn-and-Mint** 模式，基于 **LayerZero OFT（Omnichain Fungible Token）** 标准。
+
+> **链上验证事实**：以太坊上的 0G 代币合约名称为 `ZeroGravityOFT`（Solidity v0.8.22），地址为 `0x4b948d64de1f71fcd12fb586f4c776421a35b3ee`，直接继承了 LayerZero 的 OFT 标准。这是链上可查的事实，不是推测。
 
 **关键逻辑拆解**：
-*   **资产本质**：在 0G Chain 侧，A0GI 是原生 Gas 费，底层系统拥有铸造权。
-*   **权限管理**：在 Ethereum 侧，A0GI 合约预留了管理权限。0G 官方通过智能合约授权，将以太坊端 A0GI 的 **Burn 权限** 移交给了 CCIP Router。
-*   **流转闭环**：当资产从以太坊回流 0G 时，CCIP 直接在以太坊链上执行销毁（Burn），同时在 0G 链底层直接增加用户余额。这消除了“金库被黑”的锁仓风险。
+*   **资产本质**：在 0G Chain 侧，0G 是原生 Gas 代币。在以太坊和 BSC 侧，0G 是一个 OFT 合约（ERC-20 + LayerZero 跨链能力）。
+*   **跨链机制**：OFT 合约内部通过 `_debit()`（销毁）和 `_credit()`（铸造）实现 Burn/Mint。当用户从以太坊向 0G 跨链时，以太坊端 OFT 内部销毁代币，LayerZero 消息传递到 0G 链后铸造等量代币。
+*   **全链拓扑**：三条链（Ethereum ↔ BSC ↔ 0G）形成全链 Burn/Mint 网络，使用同一合约地址，任意两链之间可直接跨链。不是 Hub-and-Spoke 模式，没有”主链”概念。
+*   **无金库风险**：因为是 Burn/Mint 而非 Lock/Release，不存在”金库被黑”的锁仓风险。全网代币总量始终守恒。
 
 ---
 
@@ -81,6 +84,6 @@ title: "三种桥接方案——锁、烧、换"
 - **Lock-and-Mint** 像行李寄存，虽然通用但存在”金库”安全隐患，且速度受限于最终性确认。
 - **最终性（Finality）** 是跨链延迟的物理限制，是安全与速度权衡的产物。
 - **包装代币**导致流动性碎片化，**规范代币**是唯一官方版本。理解这个区别是后续理解”规范映射”的基础。
-- **Burn-and-Mint** 像货币兑换，通过跨链权限的深度整合，实现了 A0GI 在不同链间的原生级、无损流转。
+- **Burn-and-Mint** 像货币兑换。0G 代币实际采用的是 LayerZero OFT 标准（链上已验证：合约名 `ZeroGravityOFT`），三链全链 Burn/Mint，无金库风险。
 
 在下一章，我们将剖析跨链桥的安全风险，看这种影子游戏一旦失控会发生什么。
