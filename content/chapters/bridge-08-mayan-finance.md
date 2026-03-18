@@ -16,7 +16,9 @@ title: "拍卖式结算层——Mayan Finance 详解"
 
 ## 1. Mayan 在 Monad Bridge 中扮演什么角色？
 
-如果说 Axelar 是大脑（传指令），Wormhole 是肌肉（传证明），那么 **Mayan Finance 就是“拍卖行（结算中心）”**。
+回忆第 1 章的概念区分：**Bridge** 是跨链同币（链A 代币X → 链B 代币X），**Cross-Chain Swap** 是跨链换币（链A 代币X → 链B 代币Y）。前面学的 CCIP、Wormhole、LayerZero 主要解决的是 Bridge 问题。而 Mayan Finance 解决的是 **Cross-Chain Swap** 问题。
+
+如果说 Axelar 是大脑（传指令），Wormhole 是肌肉（传证明），那么 **Mayan Finance 就是”拍卖行（结算中心）”**。
 
 在 Monad Bridge 的三层架构中，Mayan 负责**“资产定价与履约”**。当用户想转一笔巨大的 ETH 到 Monad 时，Mayan 不会直接调用某个池子，而是发起一场全网竞价。
 

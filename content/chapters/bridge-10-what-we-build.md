@@ -47,7 +47,7 @@ title: "终章——构建 0G Bridge MVP 蓝图"
 *   **第二阶段 (稳定币)**：集成 Stargate Router，实现 USDC/USDT/WETH 跨链。需先解决 Stargate 在 0G 上的流动性问题。
 *   **第三阶段 (体验补齐)**：上线 Gas 代付功能（后端 Relayer 服务）；交易状态实时追踪（LayerZero Scan API）。
 *   **第四阶段 (iNFT 跨链)**：用 LayerZero ONFT 实现 iNFT 所有权跨链；启动 ERC-7857 适配层研发。
-*   **第五阶段 (聚合路由)**：接入 CCIP 等作为补充通道；引入 intent/solver 层实现即时到账。
+*   **第五阶段 (Cross-Chain Swap)**：引入 intent/solver 层（第 9 章），实现"链A 代币X → 链B 代币Y"的一步到位体验。接入 CCIP 等作为补充通道。
 
 ---
 
